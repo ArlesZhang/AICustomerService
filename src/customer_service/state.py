@@ -5,6 +5,7 @@ Intent = Literal[
     "product",
     "order",
     "refund",
+    "refund_action",
     "complaint",
     "unknown",
 ]
@@ -15,6 +16,14 @@ class CustomerServiceState(TypedDict, total=False):
     user_id: str
     session_id: str
     question: str
+
+    # Dify 知识问答：inputs 为 Dify 应用输入变量预留；
+    # conversation_id 用于多轮上下文；result/error 用于观测与评估。
+    dify_inputs: dict
+    dify_conversation_id: str
+    dify_message_id: str
+    dify_result: dict
+    dify_error: str
 
     # 流程中间状态
     intent: Intent
