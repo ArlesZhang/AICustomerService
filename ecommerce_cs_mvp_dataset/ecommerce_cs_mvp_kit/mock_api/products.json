@@ -1,0 +1,128 @@
+[
+  {
+    "sku": "FSH-100-W-M",
+    "product_id": "FSH-100",
+    "name": "云感纯棉T恤",
+    "category": "服装",
+    "variant": "白色/M",
+    "price": 79.0,
+    "stock": 18
+  },
+  {
+    "sku": "FSH-100-B-L",
+    "product_id": "FSH-100",
+    "name": "云感纯棉T恤",
+    "category": "服装",
+    "variant": "黑色/L",
+    "price": 79.0,
+    "stock": 0
+  },
+  {
+    "sku": "FSH-201-N-M",
+    "product_id": "FSH-201",
+    "name": "轻量防风外套",
+    "category": "服装",
+    "variant": "藏青/M",
+    "price": 199.0,
+    "stock": 6
+  },
+  {
+    "sku": "ELE-110-BK",
+    "product_id": "ELE-110",
+    "name": "星桥蓝牙耳机",
+    "category": "数码电子",
+    "variant": "黑色",
+    "price": 159.0,
+    "stock": 12
+  },
+  {
+    "sku": "ELE-205-GY",
+    "product_id": "ELE-205",
+    "name": "无线键鼠套装",
+    "category": "电脑配件",
+    "variant": "灰色",
+    "price": 129.0,
+    "stock": 9
+  },
+  {
+    "sku": "HOM-310-45",
+    "product_id": "HOM-310",
+    "name": "折叠收纳箱",
+    "category": "家居",
+    "variant": "45L/透明",
+    "price": 39.9,
+    "stock": 30
+  },
+  {
+    "sku": "HOM-420-WH",
+    "product_id": "HOM-420",
+    "name": "桌面加湿器",
+    "category": "家居小电器",
+    "variant": "白色",
+    "price": 89.0,
+    "stock": 5
+  },
+  {
+    "sku": "BEA-101-120",
+    "product_id": "BEA-101",
+    "name": "温和洁面乳",
+    "category": "美妆个护",
+    "variant": "120g",
+    "price": 49.0,
+    "stock": 22
+  },
+  {
+    "sku": "BEA-205-50",
+    "product_id": "BEA-205",
+    "name": "保湿面霜",
+    "category": "美妆个护",
+    "variant": "50g",
+    "price": 129.0,
+    "stock": 11
+  },
+  {
+    "sku": "BOO-010-1",
+    "product_id": "BOO-010",
+    "name": "中文编程入门书",
+    "category": "图书",
+    "variant": "平装版",
+    "price": 59.0,
+    "stock": 14
+  },
+  {
+    "sku": "GRO-120-20",
+    "product_id": "GRO-120",
+    "name": "挂耳咖啡组合装",
+    "category": "食品",
+    "variant": "20包",
+    "price": 69.0,
+    "stock": 7
+  },
+  {
+    "sku": "PET-030-M",
+    "product_id": "PET-030",
+    "name": "宠物牵引绳",
+    "category": "宠物用品",
+    "variant": "M号/红色",
+    "price": 35.0,
+    "stock": 16
+  },
+  {
+    "sku": "SPO-055-BL",
+    "product_id": "SPO-055",
+    "name": "瑜伽垫",
+    "category": "运动用品",
+    "variant": "蓝色",
+    "price": 99.0,
+    "stock": 8
+  },
+  {
+    "sku": "DIG-008-1",
+    "product_id": "DIG-008",
+    "name": "软件兑换码",
+    "category": "数字商品",
+    "variant": "个人版/1年",
+    "price": 199.0,
+    "stock": 50
+  }
+]

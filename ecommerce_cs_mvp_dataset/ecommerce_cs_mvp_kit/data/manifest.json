@@ -1,0 +1,33 @@
+{
+  "dataset_version": "xq-cs-benchmark-1.0",
+  "policy_version": "2026-10-01",
+  "case_count": 50,
+  "category_counts": {
+    "服装": 6,
+    "数码电子": 5,
+    "家居": 5,
+    "美妆个护": 4,
+    "图书": 2,
+    "食品": 2,
+    "宠物用品": 1,
+    "运动用品": 1,
+    "数字商品": 2,
+    "交易": 7,
+    "物流": 3,
+    "跨品类": 2,
+    "跨文档": 2,
+    "安全": 2,
+    "多轮": 2,
+    "转人工": 1,
+    "知识治理": 2,
+    "端到端": 1
+  },
+  "difficulty_counts": {
+    "easy": 7,
+    "medium": 23,
+    "hard": 20
+  },
+  "requires_tool_count": 14,
+  "synthetic": true,
+  "merchant": "星桥优选（虚构）"
+}

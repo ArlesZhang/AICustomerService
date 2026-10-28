@@ -23,25 +23,59 @@
 | 生产观测   | 日志 + LangSmith 等追踪工具    | 调试节点、耗时、模型调用和异常  |
 
 ```
-ecommerce-customer-service/
-├── .env
+AICustomerService/
+├── .env.example              # 环境变量模板；真实 .env 仅本地保留、不入库
 ├── .gitignore
+├── .python-version           # Python 版本锁定
+├── CLAUDE.md                 # 项目说明与文档维护规范
+├── README.md
+├── main.py                   # CLI 入口，便于本地冒烟
 ├── pyproject.toml
+├── uv.lock
+├── docs/
+│   ├── SOP-dify-integration.md   # Dify 接入 SOP
+│   ├── PROJECT_STATUS.md         # 当前状态与下一步
+│   └── PROJECT_GAP_ANALYSIS.md   # 与行业标杆的差距分析
+├── ecommerce_cs_mvp_dataset/
+│   └── ecommerce_cs_mvp_kit/     # 星桥优选合成客服基准包 xq-cs-benchmark-1.0
+│       ├── README.md             # 数据包说明与 V1–V8 用法
+│       ├── SOURCES.md            # 公开真实语料来源与使用边界
+│       ├── data/
+│       │   ├── eval_dataset.jsonl    # 50 条标准评测集（程序评估主文件）
+│       │   ├── eval_dataset.csv      # 人工审阅版
+│       │   ├── evaluation_rubric.md  # 评估口径
+│       │   └── manifest.json         # 数据集版本与分布统计
+│       ├── knowledge_base/           # 建议导入 Dify 的 6 份知识文档
+│       │   ├── 00_商家与知识库说明.md
+│       │   ├── 01_退换货与退款政策.md
+│       │   ├── 02_订单物流与隐私流程.md
+│       │   ├── 03_商品目录与属性.md
+│       │   ├── 04_优惠券支付与发票.md
+│       │   └── 05_客服SOP与转人工.md
+│       ├── mock_api/                 # V3 只读工具的数据源
+│       │   ├── merchant_policy.json  # 统一规则的结构化源文件
+│       │   ├── orders.json           # 演示订单（含测试验证码）
+│       │   ├── products.json         # 商品 / SKU / 库存
+│       │   └── tracking.json         # 演示物流
+│       └── reports/                  # 基线与回归测试结果（当前为空）
 ├── src/
 │   └── customer_service/
 │       ├── __init__.py
 │       ├── state.py          # 流程共享状态
-│       ├── tools.py          # 订单、商品、退款等业务工具
+│       ├── tools.py          # 订单、商品、退款等业务工具（当前为 mock）
 │       ├── dify_client.py    # Dify Chatflow API 客户端
-│       ├── nodes.py          # 各业务节点
+│       ├── nodes.py          # 意图识别与各业务节点
 │       ├── graph.py          # 工作流定义与编译
 │       └── api.py            # FastAPI 服务入口
 └── tests/
-    ├── test_dify_client.py
-    ├── test_knowledge_node.py
-    ├── test_graph_routing.py
-    └── test_api.py
+    ├── test_dify_client.py    # Dify 客户端（超时/重试/错误分类）
+    ├── test_knowledge_node.py # knowledge 节点
+    ├── test_graph_routing.py  # 图路由
+    ├── test_intent_routing.py # 意图规则
+    └── test_api.py            # FastAPI 接口
 ```
+
+> `ecommerce_cs_mvp_dataset/` 是 V2 评测与 V3 工具接入的基准数据包：50 条 case 覆盖 FAQ、例外、多轮、工具调用、安全等场景；`knowledge_base/` 是 Dify 导入源，`mock_api/` 是业务工具的数据源。数据为人工设计的合成数据，使用边界见包内 `SOURCES.md`。
 
 # 下一步：从演示 Bot 进化为 AI 客服解决方案
 
@@ -116,6 +150,8 @@ FAQ 结构化、元数据、版本管理、检索调优、建立标准测试集�
 
 先从电商客服的典型业务场景出发，至少建立 50 条测试问题。初期不必追求数量，先保证每条都有明确的预期行为。
 
+> 当前仓库已提供 `ecommerce_cs_mvp_dataset/ecommerce_cs_mvp_kit/data/eval_dataset.jsonl`（50 条，`xq-cs-benchmark-1.0`），可直接作为初始回归集；下一步是接入评估脚本并校准判分口径，而不是从零编写。
+
 建议分层：
 
 |测试层|示例|核心验证|
@@ -143,27 +179,150 @@ FAQ 结构化、元数据、版本管理、检索调优、建立标准测试集�
 
 ## V2.2 建立知识资产治理体系
 
-不要继续把所有业务资料无差别地塞进一个 Markdown 文件。建议把知识分为三类。
+不要把所有业务资料无差别地塞进一个 Markdown 文件。建议把知识分为三类。(以下三类皆为示例/示意图)
 
-![Tables Templates | Zapier](https://images.openai.com/static-rsc-4/vb-fHdoNQ-u_fBGH-TCbPgx1FQqKoMUJc_Ph1QuBek4lPVBcdhQj6CRPO40tEY2Y5OO-vIv7sLEncFz-ErlT5akYN9x8sHOikCR6cPO5FL8oLGLFJ2z-Ba2tUuGbyazojdn1p39oUlgitifQov5CTWBmyp1MCDJDbIvMYUHOeHY?purpose=inline)
+> 初始知识文档已放在 `ecommerce_cs_mvp_dataset/ecommerce_cs_mvp_kit/knowledge_base/`（6 份，按政策、物流、商品、优惠券、SOP 拆分），可直接作为知识资产表的登记对象。
 
 A. FAQ 类知识
 
 适合直接问答，例如发货时效、退货入口、物流查询方法。
 
-![Free Online Whiteboard Templates to Customize](https://images.openai.com/static-rsc-4/dVQAebDny0WkgFdiH9WqwkbieeWSF8mEsGYxR9swhWuErOAalgFi2NJcbNDBRyOwSHGfzT_teCNMo1pk8yjrn_GZ8pGbp74uAEFC-41qiwRKfLwn0aet539lpOnHO_4dxnzAf6vbGabZchTAN0b22HlbUF86nBNDaV8H8JfDvOg?purpose=inline)
+| ID | Question | Answer | Category |
+| :--- | :--- | :--- | :--- |
+| ...YHWGMEY | What is Zapier? | Zapier is an online automation tool that connects your apps and services. | Basic |
+| ...YHWGMEZ | How do I create a Zap? | To create a Zap, go to the Zapier dashboard and click on "Create Zap". | Advanced |
+| ...YHWGMF0 | Can Zapier integrate with Google Sheets? | Yes, Zapier can integrate with Google Sheets to automate data syncing. | Advanced |
+| ...YHWGMF1 | What are the benefits of using Zapier at work? | Zapier automates repetitive tasks to save time and reduce manual errors. | Advanced |
+| ...YHWGMF2 | Is there a free version of Zapier available? | Yes, Zapier offers a free plan with basic features and a limited number of tasks. | Basic |
+| ...YHWGMF3 | What are 'Zaps'? | Zaps are automated workflows that connect your apps together. | Advanced |
+| ...GJ6ZT1K | How secure is Zapier? | Zapier takes security seriously and uses bank-level encryption to protect data. | Advanced |
+| ...GJ6ZT1M | Can I share my Zaps with others? | Yes, you can share your Zaps with teammates using a shared workspace. | Advanced |
+| ...GJ6ZT1N | What apps can Zapier connect? | Zapier supports over 2,000 apps including Gmail, Slack, and Salesforce. | Advanced |
+| ...GJ6ZT1P | How do I fix an error in my Zap? | You can troubleshoot errors by checking the task history and error logs. | Advanced |
+
 
 B. 规则与流程类知识
 
 适合流程说明，例如退款条件、订单不同状态下的操作限制、异常处理 SOP。
 
-![MS SQL Server vs. PostgreSQL: Which to Choose? |   LearnSQL.com](https://images.openai.com/static-rsc-4/D-qjDudbKXROS8nfFqXuHe0H9HS3kVcnpO6f_FSfry87uxwNz43gVRQO_tdy3VVvipjVpxQojtHbNTeFBwhFM4WJLs35uvK1l_elEb6lxiWMz97deHtx2dhYxyaC-Ep_rQKLSxigrNpSpv54Hnit1EdXBhDMYK8tMPl64oVFnGw?purpose=inline)
+```mermaid
+flowchart LR
+    %% 定义节点样式 (匹配原图配色)
+    classDef startEnd fill:#2b82cb,stroke:#154c7b,stroke-width:2px,color:#fff;
+    classDef initial fill:#2b82cb,stroke:#154c7b,stroke-width:2px,color:#fff;
+    classDef complex fill:#dd5c3f,stroke:#8f2e18,stroke-width:2px,color:#fff;
+    classDef higher fill:#d94941,stroke:#7a1b16,stroke-width:2px,color:#fff;
+    classDef simple fill:#6cb46a,stroke:#2e5c2d,stroke-width:2px,color:#fff;
+    classDef finish fill:#6cb46a,stroke:#2e5c2d,stroke-width:2px,color:#fff;
+
+    %% 节点定义
+    START([START]):::startEnd
+    Contact[Customer<br>Contact]:::initial
+    Verify[Verification<br>& Validation]:::initial
+    Analysis[Problem<br>Analysis]:::initial
+
+    Complex[Complex<br>Cases]:::complex
+    Higher[Resolution<br>by Higher<br>Support]:::higher
+    
+    Simple[Simple<br>Cases]:::simple
+    ConfirmRes[Resolution<br>Confirmed]:::simple
+    
+    Feedback[Confirmation<br>& Feedback]:::finish
+    FollowUp[Follow-Up<br>Optional]:::finish
+    Closure[Closure]:::finish
+    END([END]):::startEnd
+
+    %% 连接关系
+    START --> Contact
+    Contact --> Verify
+    Verify --> Analysis
+    
+    %% 问题分析后分为复杂和简单两条线
+    Analysis --> Complex
+    Analysis --> Simple
+    
+    %% 复杂问题升级处理
+    Complex --> Higher
+    Higher --> ConfirmRes
+    
+    %% 简单问题直接确认
+    Simple --> ConfirmRes
+    
+    %% 解决确认后汇总到反馈和结案
+    ConfirmRes --> Feedback
+    Feedback --> FollowUp
+    FollowUp --> Closure
+    Closure --> END
+```
 
 C. 实时业务数据
 
 例如订单状态、物流轨迹、库存和退款进度。这些数据应该来自 API 或数据库，而不是静态知识文档。
 
-建议每条知识增加以下元数据：
+
+```mermaid
+erDiagram
+    product_category {
+        string category_id PK
+        string category
+    }
+    product {
+        string product_id PK
+        string category_id FK
+        string brand
+        string supplier
+        string unit
+        float price
+    }
+    customer {
+        string customer_id PK
+        string name
+        string email
+        string mobile
+        string address
+    }
+    shipment {
+        string shipment_id PK
+        string company
+        string delivery_zone
+        string delivery_time
+        float price
+    }
+    order {
+        string order_id PK
+        string customer_id FK
+        string shipment_id FK
+    }
+    order_details {
+        string order_detail_id PK
+        string order_id FK
+        string product_id FK
+        int quantity
+        float price
+    }
+    order_payment {
+        string order_pay_id PK
+        string order_id FK
+        float total_amount
+        string payment_status
+    }
+    order_status {
+        string order_status_id PK
+        string order_id FK
+        string status
+    }
+
+    product_category ||--o{ product : "contains"
+    customer ||--o{ order : "places"
+    shipment ||--o{ order : "delivers"
+    order ||--o{ order_details : "has"
+    product ||--o{ order_details : "included_in"
+    order ||--|| order_payment : "pays"
+    order ||--o{ order_status : "tracks"
+```
+
+
+建议为每个知识文档增加以下元数据：
 
 |字段|示例|用途|
 |---|---|---|
@@ -178,9 +337,11 @@ C. 实时业务数据
 |`owner`|`after_sales`|责任部门|
 |`status`|`active`|是否有效|
 
-注意：如果你的 Dify 版本和知识库配置支持 Metadata Filtering，就可以用元数据过滤；否则先在导入前拆分知识库或按业务域组织文档。不要假设上传一个 CSV 就自动具备所有元数据过滤能力。
+注意：为了保证后续检索的准确性，无论你的 Dify 版本是否支持元数据过滤，都必须在导入前按业务域拆分文档（如将退款政策、物流规则分别存为独立文件，或分属不同知识库）。在此基础上，如果你的 Dify 版本支持 Metadata Filtering（元数据过滤），你可以进一步为这些拆分好的独立文档打上 category 等标签，并在检索节点开启过滤，实现精准的“软隔离”检索。不要假设上传一个带有 category 列的 CSV 就自动具备所有元数据过滤能力。
 
 ### 分段策略如何优化？
+
+> 本质上是在解决一个核心矛盾：如何让“最小检索单元”既能被精准匹配，又不会因为被切碎而丢失理解问题所需的完整上下文。
 
 第一版使用默认分段即可。接下来用测试集比较不同策略：
 

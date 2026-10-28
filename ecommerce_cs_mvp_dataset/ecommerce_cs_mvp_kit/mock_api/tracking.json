@@ -1,0 +1,38 @@
+[
+  {
+    "tracking_no": "SF1000001",
+    "status": "delivered",
+    "last_event": "2026-10-03 14:20 已签收",
+    "eta": "2026-10-03"
+  },
+  {
+    "tracking_no": "SF1000002",
+    "status": "in_transit",
+    "last_event": "2026-10-27 09:10 到达深圳转运中心",
+    "eta": "2026-10-28"
+  },
+  {
+    "tracking_no": "SF1000003",
+    "status": "delivered",
+    "last_event": "2026-10-05 11:00 已签收",
+    "eta": "2026-10-05"
+  },
+  {
+    "tracking_no": "SF1000005",
+    "status": "delivered",
+    "last_event": "2026-10-07 16:30 已签收",
+    "eta": "2026-10-07"
+  },
+  {
+    "tracking_no": "SF1000006",
+    "status": "delivered",
+    "last_event": "2026-10-08 10:45 已签收",
+    "eta": "2026-10-08"
+  },
+  {
+    "tracking_no": "SF1000007",
+    "status": "in_transit",
+    "last_event": "2026-10-27 08:50 离开广州分拨中心",
+    "eta": "2026-10-29"
+  }
+]
