@@ -103,7 +103,8 @@ V1 知识问答基线已完成：Dify 负责 RAG 知识问答，LangGraph 已能
 ### 3.5 版本库与密钥
 
 - `.env` 已从 git 索引移除（`git rm --cached`）并加入 `.gitignore`，本地文件保留；后续提交不会再包含真实密钥。
-- **初始提交 `387d3ae` 中仍包含早期的 `.env`（含 `MODEL_API_KEY`）。** 若该仓库曾经推送或共享，建议轮换该密钥；如需彻底清除历史，需要重写历史，应作为单独任务执行。
+- 2026-10-31 已完成历史清理：从全部历史中移除 `.env`，force-push `main`，并重建 `v0.1.0` tag；当前 `git log --all -- .env` 为空。
+- **注意：GitHub 仍可通过旧提交 SHA（`387d3ae`）直接访问当时的 `.env`。** force-push 不会立即清除 GitHub 端不可达对象；彻底清除需联系 GitHub Support 或删除重建仓库。旧 `MODEL_API_KEY` 未轮换（用户决定保留），建议关注该 Key 的异常调用。
 - `.env.example` 仅含占位符，可安全提交。
 
 ### 3.6 基准数据包（2026-10-27 加入）
@@ -161,3 +162,4 @@ V1 知识问答基线已完成：Dify 负责 RAG 知识问答，LangGraph 已能
 | 2026-10-26 | 冻结 V1 基线 | 提交代码并打 `v0.1.0` tag；`.env` 移出版本控制；41 项测试通过 | 本文件、`PROJECT_GAP_ANALYSIS.md` |
 | 2026-10-28 | 补录基准数据包并同步 README 结构 | 确认 `ecommerce_cs_mvp_dataset/` 含 50 条评测集、6 份知识文档和 mock 数据；V2 由 0/5 调整为 1/5 完成 + 2 项部分具备 | 本文件、`PROJECT_GAP_ANALYSIS.md`、`README.md` |
 | 2026-10-31 | 迁移 Dify 接入 SOP | 从 `docs/SOP-dify-integration.md` 移至 `docs/runbooks/SOP-dify-integration.md`；同步 README、CLAUDE.md、PROJECT_STATUS、V1_BASELINE 引用并修复相对链接 | 本文件、`docs/roadmap/V1_BASELINE.md` |
+| 2026-10-31 | 清理公开仓库历史中的 `.env` | 重写全部 5 个提交清除 `.env`；force-push `main`；重建 `v0.1.0` tag。GitHub 仍可通过旧 SHA 访问旧 blob，已在 3.5 记录 | 本文件 |
