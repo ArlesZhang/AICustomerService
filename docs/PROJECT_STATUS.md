@@ -9,7 +9,7 @@
 
 - **V1 知识问答基线**：Dify Chatflow（`advanced-chat`）+ LangGraph `knowledge` 节点；支持多轮 `conversation_id`、Dify 超时/报错/空答案降级转人工；FastAPI `POST /chat`、`GET /health` 与 CLI 入口；41 项测试通过；已提交并打 `v0.1.0` tag。
 - **基准数据包**：`ecommerce_cs_mvp_dataset/ecommerce_cs_mvp_kit/`，含 50 条评测 case、6 份知识文档、订单/商品/物流/政策 mock 数据；版本 `xq-cs-benchmark-1.0`，政策版本 `2026-10-01`。
-- **文档**：V1–V8 路线图（`docs/roadmap/`）、Dify 接入 SOP（`docs/runbooks/SOP-dify-integration.md`）、本状态文档。
+- **文档**：V1–V8 路线图（`docs/roadmap/`）、本状态文档；V1 接入约束见 `docs/roadmap/V1_BASELINE.md` 的「基线快照」。
 
 **未开始**
 

@@ -37,11 +37,9 @@ AICustomerService/
 ├── docs/
 │   ├── PROJECT_STATUS.md         # 当前状态与下一步
 │   ├── PROJECT_GAP_ANALYSIS.md   # 与行业标杆的差距分析
-│   ├── roadmap/                  # V1–V8 路线图与各阶段验收标准
-│   │   ├── MILESTONES.md
-│   │   └── V1_BASELINE.md ~ V8_BUSINESS_ROI.md
-│   └── runbooks/
-│       └── SOP-dify-integration.md   # Dify 接入 SOP
+│   └── roadmap/                  # V1–V8 路线图与各阶段验收标准
+│       ├── MILESTONES.md
+│       └── V1_BASELINE.md ~ V8_BUSINESS_ROI.md
 ├── ecommerce_cs_mvp_dataset/
 │   └── ecommerce_cs_mvp_kit/     # 星桥优选合成客服基准包 xq-cs-benchmark-1.0
 │       ├── README.md             # 数据包说明与 V1–V8 用法
@@ -82,6 +80,32 @@ AICustomerService/
 ```
 
 > `ecommerce_cs_mvp_dataset/` 是 V2 评测与 V3 工具接入的基准数据包：50 条 case 覆盖 FAQ、例外、多轮、工具调用、安全等场景；`knowledge_base/` 是 Dify 导入源，`mock_api/` 是业务工具的数据源。数据为人工设计的合成数据，使用边界见包内 `SOURCES.md`。
+
+## 快速开始
+
+```bash
+uv sync
+cp .env.example .env          # 填入 MODEL_API_KEY / DIFY_API_KEY / DIFY_API_URL
+uv run pytest -q              # 41 项测试
+```
+
+本地冒烟（多轮时把上一轮返回的 `conversation_id` 作为第二个参数）：
+
+```bash
+uv run python main.py "退款多久到账？"
+uv run python main.py "那需要等多久？" "<conversation_id>"
+```
+
+启动 API：
+
+```bash
+uv run uvicorn src.customer_service.api:app --reload --port 8000
+curl -sS http://127.0.0.1:8000/chat \
+  -H 'Content-Type: application/json' \
+  -d '{"user_id":"user_001","question":"退款多久到账？"}'
+```
+
+Dify 侧前提：应用类型必须是 Chatflow（`advanced-chat`），当前应用输入表单为空（`inputs={}`）；未开启“引用与归属”，`retriever_resources` 可能为空。失败策略与实测基线见 [V1_BASELINE.md](docs/roadmap/V1_BASELINE.md) 的「基线快照」。
 
 # 下一步：从演示 Bot 进化为 AI 客服解决方案
 
@@ -193,12 +217,9 @@ AICustomerService/
 │   ├── PROJECT_GAP_ANALYSIS.md
 │   ├── DATA_DICTIONARY.md
 │   ├── API_CONTRACTS.md
-│   ├── roadmap/
-│   │   ├── MILESTONES.md
-│   │   └── V1~V8 各阶段执行与验收文档
-│   └── runbooks/
-│       ├── SOP-dify-integration.md
-│       └── RELEASE_RUNBOOK.md
+│   └── roadmap/
+│       ├── MILESTONES.md
+│       └── V1~V8 各阶段执行与验收文档
 │
 ├── ecommerce_cs_mvp_dataset/
 │   └── ecommerce_cs_mvp_kit/

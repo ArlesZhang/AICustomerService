@@ -44,7 +44,6 @@
 - 未更新文档视为任务未完成。
 
 ## 核心文档索引
-- `README.md`：项目总览与技术栈
+- `README.md`：项目总览、快速开始与技术栈
 - `docs/roadmap/MILESTONES.md`：V1-V8 总体里程碑规划
 - `docs/PROJECT_STATUS.md`：当前实时进度与卡点
-- `docs/runbooks/SOP-dify-integration.md`：Dify 接入步骤与排错
