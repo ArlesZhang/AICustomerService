@@ -41,7 +41,7 @@ V1 知识问答基线已完成：Dify 负责 RAG 知识问答，LangGraph 已能
 | CLI | `uv run python main.py "<问题>" [conversation_id]` | 手工冒烟 |
 | 配置模板 | `.env.example` 增加 Dify 配置项 | 可复现 |
 | 测试 | 客户端、节点、路由、API，共 41 项 | `41 passed` |
-| SOP | 接入方案、复现步骤、实测记录、排错与后续钩子 | `docs/SOP-dify-integration.md` |
+| SOP | 接入方案、复现步骤、实测记录、排错与后续钩子 | `docs/runbooks/SOP-dify-integration.md` |
 
 ### 2.1 关键行为变化
 
@@ -157,6 +157,7 @@ V1 知识问答基线已完成：Dify 负责 RAG 知识问答，LangGraph 已能
 
 | 日期 | 任务 | 结果 | 更新文档 |
 | --- | --- | --- | --- |
-| 2026-10-25 | 在 LangGraph 中接入 Dify `knowledge` 节点 | V1 完整闭环；41 项测试通过；真实 E2E、多轮、退款操作均验证 | 本文件、`PROJECT_GAP_ANALYSIS.md`、`SOP-dify-integration.md` |
+| 2026-10-25 | 在 LangGraph 中接入 Dify `knowledge` 节点 | V1 完整闭环；41 项测试通过；真实 E2E、多轮、退款操作均验证 | 本文件、`PROJECT_GAP_ANALYSIS.md`、`docs/runbooks/SOP-dify-integration.md` |
 | 2026-10-26 | 冻结 V1 基线 | 提交代码并打 `v0.1.0` tag；`.env` 移出版本控制；41 项测试通过 | 本文件、`PROJECT_GAP_ANALYSIS.md` |
 | 2026-10-28 | 补录基准数据包并同步 README 结构 | 确认 `ecommerce_cs_mvp_dataset/` 含 50 条评测集、6 份知识文档和 mock 数据；V2 由 0/5 调整为 1/5 完成 + 2 项部分具备 | 本文件、`PROJECT_GAP_ANALYSIS.md`、`README.md` |
+| 2026-10-31 | 迁移 Dify 接入 SOP | 从 `docs/SOP-dify-integration.md` 移至 `docs/runbooks/SOP-dify-integration.md`；同步 README、CLAUDE.md、PROJECT_STATUS、V1_BASELINE 引用并修复相对链接 | 本文件、`docs/roadmap/V1_BASELINE.md` |

@@ -35,9 +35,13 @@ AICustomerService/
 ├── pyproject.toml
 ├── uv.lock
 ├── docs/
-│   ├── SOP-dify-integration.md   # Dify 接入 SOP
 │   ├── PROJECT_STATUS.md         # 当前状态与下一步
-│   └── PROJECT_GAP_ANALYSIS.md   # 与行业标杆的差距分析
+│   ├── PROJECT_GAP_ANALYSIS.md   # 与行业标杆的差距分析
+│   ├── roadmap/                  # V1–V8 路线图与各阶段验收标准
+│   │   ├── MILESTONES.md
+│   │   └── V1_BASELINE.md ~ V8_BUSINESS_ROI.md
+│   └── runbooks/
+│       └── SOP-dify-integration.md   # Dify 接入 SOP
 ├── ecommerce_cs_mvp_dataset/
 │   └── ecommerce_cs_mvp_kit/     # 星桥优选合成客服基准包 xq-cs-benchmark-1.0
 │       ├── README.md             # 数据包说明与 V1–V8 用法
@@ -185,12 +189,16 @@ AICustomerService/
 │
 ├── docs/
 │   ├── ARCHITECTURE.md
-│   ├── SOP-dify-integration.md
 │   ├── PROJECT_STATUS.md
 │   ├── PROJECT_GAP_ANALYSIS.md
 │   ├── DATA_DICTIONARY.md
 │   ├── API_CONTRACTS.md
-│   └── RELEASE_RUNBOOK.md
+│   ├── roadmap/
+│   │   ├── MILESTONES.md
+│   │   └── V1~V8 各阶段执行与验收文档
+│   └── runbooks/
+│       ├── SOP-dify-integration.md
+│       └── RELEASE_RUNBOOK.md
 │
 ├── ecommerce_cs_mvp_dataset/
 │   └── ecommerce_cs_mvp_kit/
@@ -296,3 +304,14 @@ AICustomerService/
 - mock_api/ 是模拟业务数据源，不等于生产 API 服务。V3 可以在它外面增加 FastAPI 模拟后端。
 - migrations/ 只有在引入数据库表结构版本管理时才需要。
 - reports/ 应保存可追溯的评估结果，不应只保存截图。原始运行结果、配置和汇总指标最好可以关联起来。
+
+V7 需要额外注意：状态不等于日志
+
+LangGraph 的状态用于保存当前对话和任务的执行上下文；生产环境需要持久化时，可以使用 checkpointer 保存执行检查点。它能支持多轮对话延续、失败恢复和等待人工输入后继续执行。但业务审计日志、指标和 Trace 是另一回事。它们用于回答：
+- 谁发起了什么请求？
+- 系统调用了什么工具，使用了什么参数？
+- 工具返回了什么结果？
+- 哪一步耗时过长或失败？
+- 用户最终得到什么响应？
+
+不要把这些所有数据都塞进一个不断膨胀的 LangGraph State 中。
