@@ -17,6 +17,8 @@ FAQ 结构化、元数据、版本管理、检索调优、建立标准测试集�
 先从电商客服的典型业务场景出发，至少建立 50 条测试问题。初期不必追求数量，先保证每条都有明确的预期行为。
 
 > 当前仓库已提供 `ecommerce_cs_mvp_dataset/ecommerce_cs_mvp_kit/data/eval_dataset.jsonl`（50 条，`xq-cs-benchmark-1.0`），可直接作为初始回归集；下一步是接入评估脚本并校准判分口径，而不是从零编写。
+>
+> 2026-11-01 已产出校准版 `data/eval_dataset_v2.jsonl`（`xq-cs-benchmark-1.1`）：50 条 case 全部带 `risk_level` 与 `prohibited_behaviors`，6 条真实性问题用例按 `docs/evaluation/test_case_review.md` 改写。评估脚本应以该文件为输入，而不是 1.0 版。
 
 建议分层：
 

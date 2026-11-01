@@ -208,10 +208,21 @@ AICustomerService/
 ├── configs/
 │   ├── app.yaml
 │   ├── retrieval.yaml
-│   ├── evaluation.yaml
+│   ├── evaluation.yaml    # 评估配置：数据集、指标、阈值、报告路径
 │   └── safety.yaml
 │
 ├── docs/
+│   ├── evaluation/                   # 新增：评估体系文档
+│   │   ├── test_case_review.md       # 50 条测试用例人工审阅记录
+│   │   ├── evaluation_metrics.md     # 指标定义、计算公式、口径
+│   │   ├── north_star_metrics_benchmark.md # 五大北极星指标对标
+│   │   ├── badcase_analysis.md       # Bad Case 根因分析记录
+│   │   └── V2_ACCEPTANCE.md           # V2 验收清单
+│   │
+│   ├── knowledge/                    # 新增：知识资产治理文档
+│   │   ├── knowledge_inventory.csv   # 知识资产清单
+│   │   └── knowledge_change_log.csv  # 知识版本变更记录
+│   │
 │   ├── ARCHITECTURE.md
 │   ├── PROJECT_STATUS.md
 │   ├── PROJECT_GAP_ANALYSIS.md
