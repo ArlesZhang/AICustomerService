@@ -10,7 +10,7 @@
 - **V1 知识问答基线**：Dify Chatflow（`advanced-chat`）+ LangGraph `knowledge` 节点；支持多轮 `conversation_id`、Dify 超时/报错/空答案降级转人工；FastAPI `POST /chat`、`GET /health` 与 CLI 入口；41 项测试通过；已提交并打 `v0.1.0` tag。
 - **基准数据包**：`ecommerce_cs_mvp_dataset/ecommerce_cs_mvp_kit/`，含 50 条评测 case、6 份知识文档、订单/商品/物流/政策 mock 数据；版本 `xq-cs-benchmark-1.0`，政策版本 `2026-10-01`。
 - **文档**：V1–V8 路线图（`docs/roadmap/`）、本状态文档；V1 接入约束见 `docs/roadmap/V1_BASELINE.md` 的「基线快照」。
-- **V2.1 测试集校准（v2.1）**：`data/eval_dataset_v2.jsonl` 升级为 `xq-cs-benchmark-1.1`；50 条 case 全部补齐 `risk_level`（high 13 / medium 24 / low 13）与 `prohibited_behaviors`（每条 2–3 项）；6 条真实性问题用例按 `docs/evaluation/test_case_review.md` 改写。
+- **V2.1 测试集校准（v2.1）**：基准集 `data/eval_dataset.jsonl` 升级为 `xq-cs-benchmark-1.1`；50 条 case 全部补齐 `risk_level`（high 13 / medium 24 / low 13）与 `prohibited_behaviors`（共 112 项）；6 条真实性问题用例按 `docs/evaluation/test_case_review.md` 改写。1.0 以 git tag `benchmark-1.0` 存档，基准集与回归集（`data/regression_dataset.jsonl`）分离。
 
 **未开始**
 

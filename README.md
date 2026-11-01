@@ -45,10 +45,11 @@ AICustomerService/
 │       ├── README.md             # 数据包说明与 V1–V8 用法
 │       ├── SOURCES.md            # 公开真实语料来源与使用边界
 │       ├── data/
-│       │   ├── eval_dataset.jsonl    # 50 条标准评测集（程序评估主文件）
-│       │   ├── eval_dataset.csv      # 人工审阅版
-│       │   ├── evaluation_rubric.md  # 评估口径
-│       │   └── manifest.json         # 数据集版本与分布统计
+│       │   ├── eval_dataset.jsonl        # 基准集 v1.1（50 条，程序评估主文件）
+│       │   ├── regression_dataset.jsonl  # 回归集（Bad Case 追加，只增不升版本）
+│       │   ├── eval_dataset.csv          # 1.0 人工审阅版（只读）
+│       │   ├── evaluation_rubric.md      # 评估口径
+│       │   └── manifest.json             # 版本、sha256、分布与历史版本
 │       ├── knowledge_base/           # 建议导入 Dify 的 6 份知识文档
 │       │   ├── 00_商家与知识库说明.md
 │       │   ├── 01_退换货与退款政策.md
