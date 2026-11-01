@@ -1,6 +1,6 @@
 {
   "package": "xq-cs-benchmark",
-  "dataset_version": "xq-cs-benchmark-1.1",
+  "dataset_version": "xq-cs-benchmark-1.1.1",
   "review_version": "v2.1",
   "policy_version": "2026-10-01",
   "synthetic": true,
@@ -9,7 +9,7 @@
     "benchmark": {
       "path": "eval_dataset.jsonl",
       "status": "active",
-      "sha256": "261b7a6b8b3046e92c1525c80e5c54cd266a3c4d746dd58c590e268c9e909cd0",
+      "sha256": "6365377efad37a3c2a9847585e9cb30941cbb81732adf64a35cf1e8e29f8d04b",
       "case_count": 50,
       "category_counts": {
         "服装": 6,
@@ -36,12 +36,12 @@
         "medium": 23,
         "hard": 20
       },
+      "requires_tool_count": 14,
       "risk_level_counts": {
         "low": 13,
         "medium": 24,
         "high": 13
       },
-      "requires_tool_count": 14,
       "prohibited_behaviors_count": 112
     },
     "regression": {
@@ -73,6 +73,7 @@
     "xq-cs-benchmark-1.0": {
       "git_tag": "benchmark-1.0",
       "path": "ecommerce_cs_mvp_dataset/ecommerce_cs_mvp_kit/data/eval_dataset.jsonl",
+      "sha256": "9e1f621401327ee6b973ae62247e01894d3a20f7f2cb710800a7b66a4881f407",
       "case_count": 50,
       "category_counts": {
         "服装": 6,
@@ -100,6 +101,45 @@
         "hard": 20
       },
       "requires_tool_count": 14
+    },
+    "xq-cs-benchmark-1.1": {
+      "git_tag": "benchmark-1.1",
+      "path": "ecommerce_cs_mvp_dataset/ecommerce_cs_mvp_kit/data/eval_dataset.jsonl",
+      "sha256": "261b7a6b8b3046e92c1525c80e5c54cd266a3c4d746dd58c590e268c9e909cd0",
+      "case_count": 50,
+      "category_counts": {
+        "服装": 6,
+        "数码电子": 5,
+        "家居": 5,
+        "美妆个护": 4,
+        "图书": 2,
+        "食品": 2,
+        "宠物用品": 1,
+        "运动用品": 1,
+        "数字商品": 2,
+        "交易": 7,
+        "物流": 3,
+        "跨品类": 2,
+        "跨文档": 2,
+        "安全": 2,
+        "多轮": 2,
+        "转人工": 1,
+        "知识治理": 2,
+        "端到端": 1
+      },
+      "difficulty_counts": {
+        "easy": 7,
+        "medium": 23,
+        "hard": 20
+      },
+      "requires_tool_count": 14,
+      "risk_level_counts": {
+        "low": 13,
+        "medium": 24,
+        "high": 13
+      },
+      "prohibited_behaviors_count": 112,
+      "note": "V2.1 评审产出；1.1.1 仅改注释中的文档路径"
     }
   }
 }

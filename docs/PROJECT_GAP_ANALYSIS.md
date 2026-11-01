@@ -64,7 +64,7 @@
 
 | 交付物 | 状态 |
 | --- | --- |
-| `eval_dataset.jsonl`（50+ 条） | 已具备（50 条，`xq-cs-benchmark-1.1`，含风险等级与禁止行为；待接入脚本） |
+| `eval_dataset.jsonl`（50+ 条） | 已具备（50 条，`xq-cs-benchmark-1.1.1`，含风险等级与禁止行为；待接入脚本） |
 | `knowledge_inventory.csv` | 未开始（6 份知识文档已提供，缺元数据/资产表） |
 | `badcase_log.csv` | 未开始 |
 | 检索与回答评估脚本 | 未开始（已有 `evaluation_rubric.md`） |

@@ -10,18 +10,18 @@
 - **V1 知识问答基线**：Dify Chatflow（`advanced-chat`）+ LangGraph `knowledge` 节点；支持多轮 `conversation_id`、Dify 超时/报错/空答案降级转人工；FastAPI `POST /chat`、`GET /health` 与 CLI 入口；41 项测试通过；已提交并打 `v0.1.0` tag。
 - **基准数据包**：`ecommerce_cs_mvp_dataset/ecommerce_cs_mvp_kit/`，含 50 条评测 case、6 份知识文档、订单/商品/物流/政策 mock 数据；版本 `xq-cs-benchmark-1.0`，政策版本 `2026-10-01`。
 - **文档**：V1–V8 路线图（`docs/roadmap/`）、本状态文档；V1 接入约束见 `docs/roadmap/V1_BASELINE.md` 的「基线快照」。
-- **V2.1 测试集校准（v2.1）**：基准集 `data/eval_dataset.jsonl` 升级为 `xq-cs-benchmark-1.1`；50 条 case 全部补齐 `risk_level`（high 13 / medium 24 / low 13）与 `prohibited_behaviors`（共 112 项）；6 条真实性问题用例按 `docs/evaluation/test_case_review.md` 改写。1.0 以 git tag `benchmark-1.0` 存档，基准集与回归集（`data/regression_dataset.jsonl`）分离。
+- **V2.1 测试集校准（v2.1）**：基准集 `data/eval_dataset.jsonl` 升级为 `xq-cs-benchmark-1.1.1`（1.1 的补丁版，仅评审文档更名为 `eval_dataset_review.md`）；50 条 case 全部补齐 `risk_level`（high 13 / medium 24 / low 13）与 `prohibited_behaviors`（共 112 项）；6 条真实性问题用例按 `docs/evaluation/eval_dataset_review.md` 改写。1.0 以 git tag `benchmark-1.0` 存档，基准集与回归集（`data/regression_dataset.jsonl`）分离。
 
 **未开始**
 
-- **V2 知识治理与评估闭环**：评测脚本、知识资产表、Bad Case 归因表、知识库/Prompt 版本记录均未落地；标准测试集已有 v1.1（五项交付物完成 1 项）。
+- **V2 知识治理与评估闭环**：评测脚本、知识资产表、Bad Case 归因表、知识库/Prompt 版本记录均未落地；标准测试集已有 v1.1.1（五项交付物完成 1 项）。
 - **V3–V8**：全部未开始；V3 仅有 mock 数据，V4 仅有状态图骨架。
 
 ## 2. 下一步建议
 
 按 **V2.1 → V2.3 → V2.2 → V2.4** 推进：
 
-1. **V2.1 校准测试集**：已完成问题改写与风险等级标注；剩余动作是按 `docs/evaluation/test_case_review.md` 的「最终验收」清单确认 50 条全量审阅结论。
+1. **V2.1 校准测试集**：已完成问题改写与风险等级标注；剩余动作是按 `docs/evaluation/eval_dataset_review.md` 的「最终验收」清单确认 50 条全量审阅结论。
 2. **V2.3 基线评估脚本**：编写 `scripts/evaluate.py`，输出意图准确率、检索 Recall@K、回答准确率、转人工率、P95 延迟、token 成本，生成 `eval_report.md`。
 3. **V2.2 知识资产表**：为 6 份知识文档补齐元数据（id、分类、版本、生效/失效日期、负责人、状态），产出 `knowledge_inventory.csv`。
 4. **V2.4 Bad Case 闭环**：建立 `badcase_log.csv` 与回归用例，把失败归因到知识/检索/上下文/Prompt/模型/工作流/工具/安全。

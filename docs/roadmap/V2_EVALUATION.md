@@ -18,7 +18,7 @@ FAQ 结构化、元数据、版本管理、检索调优、建立标准测试集�
 
 > 当前仓库已提供 `ecommerce_cs_mvp_dataset/ecommerce_cs_mvp_kit/data/eval_dataset.jsonl`（50 条，`xq-cs-benchmark-1.0`），可直接作为初始回归集；下一步是接入评估脚本并校准判分口径，而不是从零编写。
 >
-> 2026-11-01 基准集已校准为 `data/eval_dataset.jsonl`（`xq-cs-benchmark-1.1`）：50 条 case 全部带 `risk_level` 与 `prohibited_behaviors`，6 条真实性问题用例按 `docs/evaluation/test_case_review.md` 改写。1.0 用 git tag `benchmark-1.0` 存档，不再保留副本文件。评估脚本应以基准集算主指标、以 `data/regression_dataset.jsonl` 算回归通过率，两者分开报告。
+> 2026-11-01 基准集已校准为 `data/eval_dataset.jsonl`（`xq-cs-benchmark-1.1`，评审文档更名后补丁为 `1.1.1`）：50 条 case 全部带 `risk_level` 与 `prohibited_behaviors`，6 条真实性问题用例按 `docs/evaluation/eval_dataset_review.md` 改写。1.0 用 git tag `benchmark-1.0` 存档，不再保留副本文件。评估脚本应以基准集算主指标、以 `data/regression_dataset.jsonl` 算回归通过率，两者分开报告。
 
 建议分层：
 

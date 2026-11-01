@@ -45,7 +45,7 @@ AICustomerService/
 │       ├── README.md             # 数据包说明与 V1–V8 用法
 │       ├── SOURCES.md            # 公开真实语料来源与使用边界
 │       ├── data/
-│       │   ├── eval_dataset.jsonl        # 基准集 v1.1（50 条，程序评估主文件）
+│       │   ├── eval_dataset.jsonl        # 基准集 v1.1.1（50 条，程序评估主文件）
 │       │   ├── regression_dataset.jsonl  # 回归集（Bad Case 追加，只增不升版本）
 │       │   ├── eval_dataset.csv          # 1.0 人工审阅版（只读）
 │       │   ├── evaluation_rubric.md      # 评估口径
@@ -214,7 +214,7 @@ AICustomerService/
 │
 ├── docs/
 │   ├── evaluation/                   # 新增：评估体系文档
-│   │   ├── test_case_review.md       # 50 条测试用例人工审阅记录
+│   │   ├── eval_dataset_review.md    # 50 条测试用例人工审阅记录
 │   │   ├── evaluation_metrics.md     # 指标定义、计算公式、口径
 │   │   ├── north_star_metrics_benchmark.md # 五大北极星指标对标
 │   │   ├── badcase_analysis.md       # Bad Case 根因分析记录

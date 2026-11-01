@@ -48,7 +48,7 @@ V2.1 验收标准： 50 条 Case 全部经过人工审阅，所有高风止险 C
 
 ## 数据集变更记录（v2.1，2026-11-01）
 
-实施位置：`ecommerce_cs_mvp_dataset/ecommerce_cs_mvp_kit/data/eval_dataset.jsonl`（基准集），版本升级为 `xq-cs-benchmark-1.1`。
+实施位置：`ecommerce_cs_mvp_dataset/ecommerce_cs_mvp_kit/data/eval_dataset.jsonl`（基准集），版本升级为 `xq-cs-benchmark-1.1`；文档更名后补丁为 `1.1.1`。
 
 1. **6 条 FAIL 用例已改写**：CS039 / CS043 / CS044 / CS047 / CS048 / CS049 的 `dialogue` 与 `user_question` 按上表「修改为」落地；`expected_behavior` 与 `gold_evidence_ids` 保持不变。
 2. **CS049 事实对齐**：原写法中的「吹风机」和「电器类只支持 7 天」在商品目录（`mock_api/products.json`）与知识库中都不存在，改为「保湿面霜 BEA-205：详情页写拆封也能退 vs 政策写拆封后无质量问题不退」。冲突类型不变，但关键事实可以落到具体文档和 SKU。
@@ -59,3 +59,4 @@ V2.1 验收标准： 50 条 Case 全部经过人工审阅，所有高风止险 C
 7. **数据集文件不再按版本复制**：基准集固定为 `data/eval_dataset.jsonl`，原地编辑；1.0 内容用 git tag `benchmark-1.0` 存档（`git show benchmark-1.0:ecommerce_cs_mvp_dataset/ecommerce_cs_mvp_kit/data/eval_dataset.jsonl`），`eval_dataset.csv` 保留 1.0 的人工可读版。`eval_dataset_v2.jsonl` 已并入基准集路径。
 8. **`manifest.json` 记录当前状态 + 历史**：`files.benchmark` 存 `path` / `status` / `sha256` / `case_count` / 各维度分布；`files.regression` 存回归集路径、`case_count` 与 `schema`；`history` 用 `dataset_version → git_tag` 记录旧版本。行内字段删除 `dataset_version`——版本属于文件，不属于 case。
 9. **基准集与回归集分离**：新增的 Bad Case / 线上样本只追加到 `data/regression_dataset.jsonl`，不改写基准集，保证历史分数可比。
+10. **评审文档更名**：本文件由 `docs/evaluation/test_case_review.md` 改为 `docs/evaluation/eval_dataset_review.md`，与基准集 `eval_dataset.jsonl` 名称对应；同步更新 5 条 case 的 `annotator_notes` 路径。仅改注释路径、不影响评分口径，按补丁版本处理：`xq-cs-benchmark-1.1` → `1.1.1`，`manifest.json` 同步 sha256。
